@@ -44,7 +44,10 @@ public class UserServiceMap implements UserService{
     }
 
     @Override
-    public User update(User user, String userId) {
+    public User update(User user, String userId) throws Exception {
+        if(users.get(userId) == null){
+            throw new Exception("No user found with the id " + userId);
+        }
         users.put(userId, user);
         return users.get(userId);
     }
